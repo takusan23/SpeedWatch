@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "SpeedWatch"
-include ':app'
+include(":app")
