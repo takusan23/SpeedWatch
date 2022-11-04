@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import androidx.wear.compose.material.*
 import androidx.wear.remote.interactions.RemoteActivityHelper
 import io.github.takusan23.speedwatch.Navigates
+import io.github.takusan23.speedwatch.R
 import io.github.takusan23.speedwatch.ui.component.WatchScrollableLazyColumn
 
 /** GitHubのリンク */
@@ -38,14 +40,14 @@ fun SettingScreen(onNavigate: (String) -> Unit) {
         ) {
             item {
                 ListHeader {
-                    Text(text = "設定")
+                    Text(text = stringResource(id = R.string.setting_screen_title))
                 }
             }
             item {
                 SettingItemChip(
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(text = "ソースコード") },
-                    secondaryLabel = { Text(text = "スマートフォンで開く") },
+                    label = { Text(text = stringResource(id = R.string.setting_screen_source_code_title)) },
+                    secondaryLabel = { Text(text = stringResource(id = R.string.setting_screen_source_code_description)) },
                     onClick = {
                         // スマートフォンのブラウザを開く
                         RemoteActivityHelper(context).startRemoteActivity(
@@ -59,8 +61,8 @@ fun SettingScreen(onNavigate: (String) -> Unit) {
             item {
                 SettingItemChip(
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(text = "ライセンス") },
-                    secondaryLabel = { Text(text = "助かります！") },
+                    label = { Text(text = stringResource(id = R.string.setting_screen_license_title)) },
+                    secondaryLabel = { Text(text = stringResource(id = R.string.setting_screen_license_description)) },
                     onClick = { onNavigate(Navigates.LicenseScreen) }
                 )
             }

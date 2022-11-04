@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SpeedWatch</string>
+    <string name="setting_screen_license_title">License</string>
+    <string name="setting_screen_title">Setting</string>
+    <string name="setting_screen_license_description">Arigatou</string>
+    <string name="setting_screen_source_code_title">Source code</string>
+    <string name="setting_screen_source_code_description">open on smartphone</string>
+    <string name="permission_screen_title">Please</string>
+    <string name="permission_screen_description">Location permission is required. The speed is calculated based on the distance traveled by periodically acquiring latitude and longitude.</string>
+    <string name="license_screen_title">License</string>
+    <string name="speed_screen_aod">Always on</string>
+    <string name="speed_screen_setting_aod_title">always on</string>
+    <string name="speed_screen_setting_aod_description">do not sleep</string>
+    <string name="speed_screen_setting_latest_update_title">Last update</string>
+    <string name="speed_screen_setting_setting">Setting</string>
+    <string name="speed_screen_speed_template">%.2f km/h</string>
 </resources>

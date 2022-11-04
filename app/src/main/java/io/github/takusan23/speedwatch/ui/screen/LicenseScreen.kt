@@ -1,7 +1,9 @@
 package io.github.takusan23.speedwatch.ui.screen
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.wear.compose.material.*
+import io.github.takusan23.speedwatch.R
 
 /** ライセンス画面 */
 @Composable
@@ -12,7 +14,7 @@ fun LicenseScreen() {
     ScalingLazyColumn(state = listState) {
         item {
             ListHeader {
-                Text(text = "ライセンス")
+                Text(text = stringResource(id = R.string.license_screen_title))
             }
         }
         items(list) { licenseData ->

@@ -15,10 +15,10 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import io.github.takusan23.speedwatch.tool.PermissionTool
-import io.github.takusan23.speedwatch.ui.screen.HomeScreen
 import io.github.takusan23.speedwatch.ui.screen.LicenseScreen
 import io.github.takusan23.speedwatch.ui.screen.PermissionScreen
 import io.github.takusan23.speedwatch.ui.screen.SettingScreen
+import io.github.takusan23.speedwatch.ui.screen.SpeedScreen
 import io.github.takusan23.speedwatch.ui.theme.SpeedWatchTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +35,7 @@ object Navigates {
     const val PermissionScreen = "permission"
 
     /** ホーム */
-    const val HomeScreen = "home"
+    const val SpeedScreen = "speed"
 
     /** 設定 */
     const val SettingScreen = "setting"
@@ -49,18 +49,18 @@ fun WearApp() {
     SpeedWatchTheme {
         val context = LocalContext.current
         val navController = rememberSwipeDismissableNavController()
-        val start = if (PermissionTool.isGrantedLocationPermission(context)) Navigates.HomeScreen else Navigates.PermissionScreen
+        val start = if (PermissionTool.isGrantedLocationPermission(context)) Navigates.SpeedScreen else Navigates.PermissionScreen
         SwipeDismissableNavHost(navController = navController, startDestination = start) {
             composable(Navigates.PermissionScreen) {
-                PermissionScreen { navController.navigate("home") }
+                PermissionScreen { navController.navigate(Navigates.SpeedScreen) }
             }
-            composable(Navigates.HomeScreen) {
-                HomeScreen { navController.navigate(it) }
+            composable(Navigates.SpeedScreen) {
+                SpeedScreen { navController.navigate(it) }
             }
             composable(Navigates.SettingScreen) {
-                SettingScreen{ navController.navigate(it) }
+                SettingScreen { navController.navigate(it) }
             }
-            composable(Navigates.LicenseScreen){
+            composable(Navigates.LicenseScreen) {
                 LicenseScreen()
             }
         }

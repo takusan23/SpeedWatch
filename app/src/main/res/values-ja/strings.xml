@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">すぴーどうおっち</string>
+    <string name="setting_screen_license_title">ライセンス</string>
+    <string name="setting_screen_title">設定</string>
+    <string name="setting_screen_license_description">ありがとうございます</string>
+    <string name="setting_screen_source_code_title">ソースコード</string>
+    <string name="setting_screen_source_code_description">スマホで開きます</string>
+    <string name="permission_screen_title">おねがい</string>
+    <string name="permission_screen_description">位置情報の権限が必要です。定期的に緯度経度を取得し移動した距離をもとに速度を計算します。</string>
+    <string name="license_screen_title">ライセンス</string>
+    <string name="speed_screen_aod">常時点灯</string>
+    <string name="speed_screen_setting_aod_title">常時点灯させる</string>
+    <string name="speed_screen_setting_aod_description">スリープにしない</string>
+    <string name="speed_screen_setting_latest_update_title">最終更新</string>
+    <string name="speed_screen_setting_setting">設定</string>
+    <string name="speed_screen_speed_template">時速 %.2f キロ</string>
 </resources>

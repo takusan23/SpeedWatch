@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -26,6 +27,9 @@ import io.github.takusan23.speedwatch.tool.ActivityTool
 import io.github.takusan23.speedwatch.tool.HaversineFunction
 import io.github.takusan23.speedwatch.ui.component.WatchScrollableLazyColumn
 
+/** 位置情報の定期取得する間隔（ミリ秒） */
+private const val IntervalMs = 5_000L
+
 /**
  * メイン画面
  *
@@ -33,7 +37,7 @@ import io.github.takusan23.speedwatch.ui.component.WatchScrollableLazyColumn
  */
 @Composable
 @SuppressLint("MissingPermission")
-fun HomeScreen(onNavigate: (String) -> Unit) {
+fun SpeedScreen(onNavigate: (String) -> Unit) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
@@ -80,7 +84,7 @@ fun HomeScreen(onNavigate: (String) -> Unit) {
                 currentLocationData.value = null
                 speedKmHour.value = 0.0
                 // 位置情報を購読
-                val locationRequest = LocationRequest.Builder(5_000).apply {
+                val locationRequest = LocationRequest.Builder(IntervalMs).apply {
                     setPriority(Priority.PRIORITY_HIGH_ACCURACY)
                     setWaitForAccurateLocation(true)
                 }.build()
@@ -104,7 +108,7 @@ fun HomeScreen(onNavigate: (String) -> Unit) {
                 TimeText(startCurvedContent = if (isAOD.value) {
                     {
                         curvedText(
-                            text = "常時点灯",
+                            text = context.getString(R.string.speed_screen_aod),
                             style = CurvedTextStyle(style)
                         )
                     }
@@ -124,7 +128,11 @@ fun HomeScreen(onNavigate: (String) -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "時速 ${"%.2f".format(speedKmHour.value)} キロ", fontSize = 24.sp)
+                    Text(
+                        // 時速 3.00 キロ みたいな感じになる
+                        text = stringResource(id = R.string.speed_screen_speed_template).format(speedKmHour.value),
+                        fontSize = 24.sp
+                    )
                 }
             }
             item {
@@ -136,8 +144,8 @@ fun HomeScreen(onNavigate: (String) -> Unit) {
             item {
                 ToggleChip(
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(text = "常時点灯させる") },
-                    secondaryLabel = { Text(text = "スリープさせない") },
+                    label = { Text(text = stringResource(id = R.string.speed_screen_setting_aod_title)) },
+                    secondaryLabel = { Text(text = stringResource(id = R.string.speed_screen_setting_aod_description)) },
                     checked = isAOD.value,
                     onCheckedChange = {
                         // Activityをスリープしないように
@@ -158,7 +166,7 @@ fun HomeScreen(onNavigate: (String) -> Unit) {
                     modifier = Modifier.fillMaxWidth(),
                     colors = ChipDefaults.chipColors(backgroundColor = MaterialTheme.colors.surface),
                     label = { Text(text = currentLocationData.value?.timeFormat ?: "") },
-                    secondaryLabel = { Text(text = "最終更新") },
+                    secondaryLabel = { Text(text = stringResource(id = R.string.speed_screen_setting_latest_update_title)) },
                     onClick = { /* do nothing */ }
                 )
             }
@@ -166,7 +174,7 @@ fun HomeScreen(onNavigate: (String) -> Unit) {
                 Chip(
                     modifier = Modifier.fillMaxWidth(),
                     colors = ChipDefaults.chipColors(backgroundColor = MaterialTheme.colors.surface),
-                    label = { Text(text = "設定") },
+                    label = { Text(text = stringResource(id = R.string.speed_screen_setting_setting)) },
                     onClick = { onNavigate(Navigates.SettingScreen) }
                 )
             }
