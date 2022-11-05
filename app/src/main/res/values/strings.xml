@@ -15,4 +15,6 @@
     <string name="speed_screen_setting_latest_update_title">Last update</string>
     <string name="speed_screen_setting_setting">Setting</string>
     <string name="speed_screen_speed_template">%.2f km/h</string>
+    <string name="setting_screen_version_title">version</string>
+    <string name="setting_screen_twitter_title">Twitter</string>
 </resources>

@@ -15,4 +15,6 @@
     <string name="speed_screen_setting_latest_update_title">最終更新</string>
     <string name="speed_screen_setting_setting">設定</string>
     <string name="speed_screen_speed_template">時速 %.2f キロ</string>
+    <string name="setting_screen_version_title">バージョン</string>
+    <string name="setting_screen_twitter_title">ツイッター</string>
 </resources>
