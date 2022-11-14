@@ -104,15 +104,26 @@ fun SpeedScreen(onNavigate: (String) -> Unit) {
         timeText = {
             // スクロール中じゃない場合は出す
             if (!listState.isScrollInProgress) {
+                // 常時点灯 を表示
                 val style = TimeTextDefaults.timeTextStyle()
-                TimeText(startCurvedContent = if (isAOD.value) {
-                    {
-                        curvedText(
-                            text = context.getString(R.string.speed_screen_aod),
-                            style = CurvedTextStyle(style)
-                        )
-                    }
-                } else null)
+                TimeText(
+                    startCurvedContent = if (isAOD.value) {
+                        {
+                            curvedText(
+                                text = context.getString(R.string.speed_screen_aod),
+                                style = CurvedTextStyle(style)
+                            )
+                        }
+                    } else null,
+                    startLinearContent = if (isAOD.value) {
+                        {
+                            Text(
+                                text = context.getString(R.string.speed_screen_aod),
+                                style = style
+                            )
+                        }
+                    } else null,
+                )
             }
         }
     ) {
